@@ -3,9 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #12acf4;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .profile-img {
+            width: 150px;
+            border-radius: 50%;
+        }
+        .projects {
+            margin-top: 20px;
+        }
+        .project {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background: #2b9ff1;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <title>hello</title>
+    <header>
+        <h1>My Portfolio</h1>
+    </header>
+    <div class="container">
+        <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+        <h2>Myself Atharva</h2>
+        <p>AIML student | Gamer | Programmer</p>
+        <div class="projects">
+            <h3>Projects</h3>
+            <div class="project">
+                <h4>Project 1:Diabetes Prediction</h4>
+                <p>a model to predict if you have diebetis or not:)</p>
+            </div>
+            <div class="project">
+                <h4>Project 2:</h4>
+                <p>Short description of the project.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Lets find one piece</p>
+    </footer>
 </body>
 </html>
