@@ -5,67 +5,290 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            text-align: center;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
         }
-        header {
-            background: #12acf4;
-            color: white;
-            padding: 20px;
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --accent: #dbeafe;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
         }
+
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--white) 100%);
+            min-height: 100vh;
+        }
+
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
         }
-        .profile-img {
-            width: 150px;
-            border-radius: 50%;
+
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--white);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+            position: relative;
+            overflow: hidden;
         }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 2px;
+        }
+
         .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin-top: 20px;
         }
-        .project {
-            background: white;
-            padding: 15px;
-            margin: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        .project-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--accent);
         }
-        footer {
-            background: #2b9ff1;
-            color: white;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(37, 99, 235, 0.15);
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        .experience-item {
+            background: var(--white);
+            margin-bottom: 25px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--accent);
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+        }
+
+        .experience-title {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .experience-company {
+            color: var(--text);
+            font-weight: 500;
+            margin: 5px 0;
+        }
+
+        .experience-date {
+            color: var(--text-light);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            display: inline-block;
+            background: var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .bio {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            transition: transform 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>My Portfolio</h1>
-    </header>
     <div class="container">
-        <img src="profile.jpg" alt="Profile Picture" class="profile-img">
-        <h2>Myself Atharva</h2>
-        <p>AIML student | Gamer | Programmer</p>
-        <div class="projects">
-            <h3>Projects</h3>
-            <div class="project">
-                <h4>Project 1:Diabetes Prediction</h4>
-                <p>a model to predict if you have diebetis or not:)</p>
+        <header class="header">
+            <img src="profile.jpg " alt="Profile Photo" class="profile-img">
+            <h1>Atharva Nalawade</h1>
+            <p class="bio">Hello! I'm a passionate AI and ML student with experience in creating responsive and user-friendly websites. I love turning ideas into reality through code.🚀</p>
+        </header>
+
+        <section class="section">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <h3>Machinery failure detection</h3>
+                    <p>A responsive AI Model built with HTML, CSS, Python and JavaScript.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">node.js</span>
+                        <span class="skill-tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Diabetes Prediction</h3>
+                    <p> AI model that predicts if a person has diabetes or not</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">node.js</span>
+                        <span class="skill-tag">react.js</span>
+                    </div>
+                </div>
             </div>
-            <div class="project">
-                <h4>Project 2:</h4>
-                <p>Short description of the project.</p>
+        </section>
+
+        <section class="section">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <p class="experience-title">Participated in Hackera Hackathon</p>
+                <p class="experience-company">Held in SGU university ,Kolhapur,Maharashtras</p>
+                <p>Learned more about model building and web dev.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Next.js</span>
+                    <span class="skill-tag">Python</span>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="section">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Email:</strong> atharvanalawade16j@gmail.com
+                </div>
+                <div class="contact-item">
+                    <strong>Phone:</strong> 866825....
+                </div>
+                <div class="contact-item">
+                    <strong>Location:</strong> Kolhapur, Maharashtra
+                </div>
+                <div class="contact-item">
+                    <strong>LinkedIn:</strong> linkedin.com/in/atharvanalawade
+                </div>
+                <div class="contact-item">
+                    <strong>GitHub:</strong> github.com/SinVegeta
+                </div>
+            </div>
+        </section>
     </div>
-    <footer>
-        <p>Lets find one piece</p>
-    </footer>
 </body>
 </html>
